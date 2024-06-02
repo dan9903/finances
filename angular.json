@@ -20,9 +20,7 @@
             "outputPath": "dist/finances-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -30,7 +28,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/themes/bootstrap4-dark-blue.scss",
+                "bundleName": "bootstrap4-dark-blue",
+                "inject": false
+              },
+              {
+                "input": "src/themes/lara-light-blue.scss",
+                "bundleName": "lara-light-blue",
+                "inject": false
+              }
             ],
             "scripts": []
           },
