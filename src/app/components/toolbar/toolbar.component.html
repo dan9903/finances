@@ -1,0 +1,21 @@
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+        <p-button label="Finance" class="mr-2" [text]="true" class="buttonBold"/>
+    </div>
+    <div class="p-toolbar-group-center">
+      <p-button label="Overview" [text]="true" [raised]="active('home')" (onClick)="redirectTo('home')"/>
+      <p-button label="Transactions" [text]="true" [raised]="active('transactions')" (onClick)="redirectTo('transactions')"/>
+      <p-button label="Accounts" [text]="true" [raised]="active('accounts')" (onClick)="redirectTo('accounts')"/>
+      <p-button label="Categories" [text]="true" [raised]="active('categories')" (onClick)="redirectTo('categories')"/>
+      <p-button label="Settings" [text]="true" [raised]="active('settings')" (onClick)="redirectTo('settings')"/>
+    </div>
+
+    <div class="p-toolbar-group-end">
+       <p-dropdown
+          [options]="themes"
+          [(ngModel)]="selectedTheme"
+          (onChange)="changeTheme(selectedTheme.id)"
+          styleClass="mb-3"
+      ></p-dropdown>
+   </div>
+</p-toolbar>>

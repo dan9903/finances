@@ -8,13 +8,20 @@ export class ThemeService {
 
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
-  switchTheme(theme: string ) {
-    console.log("cu");
+  switchTheme(theme: string) {
     let themeLink = this.document.getElementById('app-theme') as HTMLLinkElement;
-    console.log(themeLink); 
     if (themeLink) {
-      console.log("calling change theme");
       themeLink.href = theme + '.css'; /* bundle name */
     }
+  }
+
+  getCurrentTheme(): string {
+    let themeId = '';
+    let themeLink = this.document.getElementById('app-theme') as HTMLLinkElement;
+    if (themeLink) {
+      const url = themeLink.href;/* bundle name */
+      themeId = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.css'));
+    }
+    return themeId;
   }
 }
