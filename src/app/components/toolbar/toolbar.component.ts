@@ -6,8 +6,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.scss'
+  templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent implements OnInit {
   rangeDates: Date[] = [];
