@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './screens/home/home.component';
 import { PageNotFoundComponent } from './screens/page-not-found/page-not-found.component';
+import { SignInComponent } from './screens/sign-in/sign-in.component';
+import { SignUpComponent } from './screens/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './screens/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -10,11 +13,15 @@ const routes: Routes = [
   },
   {
     path: 'sign-in',
-    component: PageNotFoundComponent
+    component: SignInComponent
   },
   {
     path: 'sign-up',
-    component: PageNotFoundComponent
+    component: SignUpComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
     path: '',

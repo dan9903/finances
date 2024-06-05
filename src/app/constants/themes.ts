@@ -1,4 +1,4 @@
-import ITheme from "../models/ITheme";
+import ITheme from "../interfaces/ITheme";
 
 export const THEMES: ITheme[] = [
   {

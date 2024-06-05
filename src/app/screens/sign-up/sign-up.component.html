@@ -1,0 +1,75 @@
+<div class="min-h-screen min-w-full">
+  <div class="flex min-h-screen justify-content-center align-content-center flex-wrap">
+    <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4">
+      <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
+      <div class="text-center mb-5">
+          <img src="assets/images/icons8-money-box-light.gif" alt="Image" height="50" class="mb-3">
+          <div class="text-900 text-3xl font-medium mb-3">Let's create your new account</div>
+      </div>
+
+      <div>
+          <label for="username" class="block text-900 font-medium mb-2">Username: </label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Username"
+            pInputText class="w-full mb-3"
+            formControlName="username"
+          />
+          <div *ngIf="signUpForm?.get('username')?.invalid && signUpForm?.get('username')?.touched" class="bg-danger mb-2" >
+              Inform a valid username.
+          </div>
+
+          <label for="email" class="block text-900 font-medium mb-2">Email: </label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            placeholder="Email address"
+            pInputText class="w-full mb-3"
+            formControlName="email"
+          />
+          <div *ngIf="signUpForm?.get('email')?.invalid && signUpForm?.get('email')?.touched" class="bg-danger mb-2" >
+              Inform a valid email.
+          </div>
+
+          <label for="password" class="block text-900 font-medium mb-2">Password: </label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Password"
+            pInputText
+            class="w-full mb-3"
+            formControlName="password"
+          />
+          <div *ngIf="signUpForm?.get('password')?.invalid && signUpForm?.get('password')?.touched" class="bg-danger mb-2" >
+              Inform a valid password.
+          </div>
+
+          <label for="passwordConfirmation" class="block text-900 font-medium mb-2">Confirm Password: </label>
+          <input
+            id="passwordConfirmation"
+            type="password"
+            placeholder="Confirm your password"
+            pInputText
+            class="w-full mb-3"
+            formControlName="passwordConfirmation"
+          />
+          <div *ngIf="signUpForm?.get('passwordConfirmation')?.invalid && signUpForm?.get('passwordConfirmation')?.touched" class="bg-danger mb-2" >
+              Inform a valid password.
+          </div>
+          <div *ngIf="signUpForm.hasError('NoPasswordMatch') && signUpForm?.get('passwordConfirmation')?.valid" class="bg-danger mb-2">
+              Password does not match
+          </div>
+
+          <div class="flex align-items-center justify-content-between mb-6">
+            <button pButton pRipple label="Clear" icon="pi pi-eraser" class="w-11rem"
+                severity="secondary" (click)="clear()"></button>
+            <button pButton pRipple label="Sign Up" icon="pi pi-user" class="w-11rem"></button>
+          </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
