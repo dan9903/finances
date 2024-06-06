@@ -1,3 +1,5 @@
+<p-toast position="top-right" />
+
 <div class="min-h-screen min-w-full">
   <div class="flex min-h-screen justify-content-center align-content-center flex-wrap">
     <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4">
@@ -13,7 +15,6 @@
           <label for="username" class="block text-900 font-medium mb-2">Username: </label>
           <input
             id="username"
-            name="username"
             type="text"
             placeholder="username"
             pInputText class="w-full mb-3"
@@ -38,8 +39,13 @@
 
           <div class="flex align-items-center justify-content-between mb-6">
               <div class="flex align-items-center">
-                  <p-checkbox id="rememberme" [binary]="true" styleClass="mr-2"></p-checkbox>
-                  <label for="rememberme" class="text-900">Remember me</label>
+                  <p-checkbox
+                    id="rememberme"
+                    [binary]="true"
+                    label="Remember me"
+                    class="text-900 font-medium"
+                    formControlName="rememberme"
+                  />
               </div>
               <a
                 class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"

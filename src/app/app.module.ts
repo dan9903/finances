@@ -6,10 +6,15 @@ import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
+import { MessageService } from 'primeng/api';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 import { PanelModule } from 'primeng/panel';
 import { RippleModule } from 'primeng/ripple';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +25,9 @@ import { PageNotFoundComponent } from './screens/page-not-found/page-not-found.c
 import { SignInComponent } from './screens/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './screens/forgot-password/forgot-password.component';
+
+import { httpInterceptorProviders } from './helpers/http.interceptor';
+import { genericErrorHandlingProviders } from './global-error-handler';
 
 @NgModule({
   declarations: [
@@ -40,14 +48,22 @@ import { ForgotPasswordComponent } from './screens/forgot-password/forgot-passwo
     CheckboxModule,
     DropdownModule,
     FormsModule,
+    HttpClientModule,
     InputTextModule,
+    MessageModule,
+    MessagesModule,
     PanelModule,
     ReactiveFormsModule,
     RippleModule,
     SplitButtonModule,
+    ToastModule,
     ToolbarModule
   ],
-  providers: [],
+  providers: [
+    genericErrorHandlingProviders,
+    httpInterceptorProviders,
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

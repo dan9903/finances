@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { THEMES } from 'src/app/constants/themes';
 import ITheme from 'src/app/interfaces/ITheme';
-import { ThemeService } from 'src/app/services/theme.service';
+import { ThemeService } from 'src/app/services/misc/theme.service';
 
 @Component({
   selector: 'app-toolbar',
