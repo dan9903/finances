@@ -71,7 +71,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     if (this.signUpForm?.valid) {
-      /*const req: IRegistrationRequest = {
+      const req: IRegistrationRequest = {
         username: this.signUpForm.get('username')?.value,
         email: this.signUpForm.get('email')?.value,
         password: this.signUpForm.get('password')?.value
@@ -79,29 +79,29 @@ export class SignUpComponent implements OnInit {
       this.authService.signup(req)
         .subscribe({
           next: (res: IRegistrationResponse) => {
-            this.storageService.saveUser(res as IUser); */
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Account created!',
-        detail: 'Go to settings, for complete your profile',
-        key: 'home'
-      });
-      this.router.navigate(['home']);
-      /* },
-       error: (error: HttpErrorResponse) => {
-         if (
-           error.status === HTTP_CODES.BAD_REQUEST ||
-           error.status === HTTP_CODES.REQUEST_TIMEOUT ||
-           error.status === HTTP_CODES.NOT_FOUND
-         ) {
-           this.messageService.add({
-             severity: 'error',
-             summary: 'Error we cannot create your user: ',
-             detail: error.message
-           });
-         }
-           }
-          }); */
+            this.storageService.saveUser(res as IUser);
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Account created!',
+              detail: 'Go to settings, for complete your profile',
+              key: 'home'
+            });
+            this.router.navigate(['home']);
+          },
+          error: (error: HttpErrorResponse) => {
+            if (
+              error.status === HTTP_CODES.BAD_REQUEST ||
+              error.status === HTTP_CODES.REQUEST_TIMEOUT ||
+              error.status === HTTP_CODES.NOT_FOUND
+            ) {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error we cannot create your user: ',
+                detail: error.message
+              });
+            }
+          }
+        });
     }
   }
 }

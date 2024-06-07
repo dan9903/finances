@@ -46,34 +46,32 @@ export class SignInComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm?.valid) {
-      /*    const req: ILoginRequest = {
-            username: this.loginForm.get('username')?.value,
-            password: this.loginForm.get('password')?.value
-          }
-          this.authService.login(req).subscribe({
-            next: (resp: ILoginResponse) => {
-              this.storageService.saveUser(resp as IUser);
-    */
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Successful login',
-        key: 'home'
-      });
+      const req: ILoginRequest = {
+        username: this.loginForm.get('username')?.value,
+        password: this.loginForm.get('password')?.value
+      }
+      this.authService.login(req).subscribe({
+        next: (resp: ILoginResponse) => {
+          this.storageService.saveUser(resp as IUser);
 
-      this.router.navigate(['home']);
-      /*     },
-           error: (err: HttpErrorResponse) => {
-             console.log("um errinho vagabundo");
-             if (err.status === HTTP_CODES.UNAUTHORIZED) {
-               this.messageService.add({
-                 severity: 'error',
-                 summary: 'Oops, your login attempt have an error',
-                 detail: 'Verify your password and username'
-               })
-             }
-           }
-         });
-       */
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful login',
+            key: 'home'
+          });
+
+          this.router.navigate(['home']);
+        },
+        error: (err: HttpErrorResponse) => {
+          if (err.status === HTTP_CODES.UNAUTHORIZED) {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Oops, your login attempt have an error',
+              detail: 'Verify your password and username'
+            })
+          }
+        }
+      });
     }
   }
 }
