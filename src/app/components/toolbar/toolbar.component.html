@@ -1,6 +1,13 @@
 <p-toolbar>
     <div class="p-toolbar-group-start">
-        <p-button icon="pi pi-wallet" label="Finance" class="mr-2" [text]="true" class="buttonBold"/>
+        <p-button
+          icon="pi pi-wallet"
+          label="Finance"
+          class="mr-2"
+          [text]="true"
+          class="buttonBold"
+          (onClick)="redirectTo('home')"
+        />
     </div>
     <div class="p-toolbar-group-center">
       <p-button label="Overview" [text]="true" [raised]="active('home')" (onClick)="redirectTo('home')"/>
@@ -11,10 +18,13 @@
     </div>
 
     <div class="p-toolbar-group-end">
-       <p-dropdown
-          [options]="themes"
-          [(ngModel)]="selectedTheme"
-          (onChange)="changeTheme(selectedTheme.id)"
-      ></p-dropdown>
-   </div>
-</p-toolbar>>
+      <p-button
+        icon="pi pi-cog"
+        [text]="true"
+        (onClick)="toggleSidebar()"
+      />
+  </div>
+</p-toolbar>
+
+<app-menu-sidebar [(sidebarVisible)]="sidebarMenuVisible">
+</app-menu-sidebar>
