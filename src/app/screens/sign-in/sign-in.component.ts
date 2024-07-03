@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { throwError } from 'rxjs';
 import { HTTP_CODES } from 'src/app/constants/http-codes';
 import { ILoginRequest, ILoginResponse } from 'src/app/interfaces/ILogin';
 import { IUser } from 'src/app/interfaces/IUser';
@@ -50,7 +49,7 @@ export class SignInComponent implements OnInit {
         username: this.loginForm.get('username')?.value,
         password: this.loginForm.get('password')?.value
       }
-      this.authService.login(req).subscribe({
+      this.authService.login$(req).subscribe({
         next: (resp: ILoginResponse) => {
           this.storageService.saveUser(resp as IUser);
 

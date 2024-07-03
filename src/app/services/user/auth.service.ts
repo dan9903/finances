@@ -13,35 +13,35 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(loginRequest: ILoginRequest): Observable<ILoginResponse> {
+  login$(loginRequest: ILoginRequest): Observable<ILoginResponse> {
     return this.http.post<ILoginResponse>(
       API_URLS.LOGIN,
       loginRequest
     );
   }
 
-  signup(registrationRequest: IRegistrationRequest): Observable<IRegistrationResponse> {
+  signup$(registrationRequest: IRegistrationRequest): Observable<IRegistrationResponse> {
     return this.http.post<IRegistrationResponse>(
       API_URLS.REGISTER,
       registrationRequest
     );
   }
 
-  fogotPassword(email: string): Observable<HttpHeaderResponse> {
+  fogotPassword$(email: string): Observable<HttpHeaderResponse> {
     return this.http.put<HttpHeaderResponse>(
       API_URLS.FORGOT_PASSWORD,
       { email: email }
     );
   }
 
-  renewToken(renewRequest: IRenewTokenRequest): Observable<string> {
+  renewToken$(renewRequest: IRenewTokenRequest): Observable<string> {
     return this.http.put<string>(
       API_URLS.RENEW_TOKEN,
       renewRequest
     )
   }
 
-  logout(username: string): Observable<HttpHeaderResponse> {
+  logout$(username: string): Observable<HttpHeaderResponse> {
     return this.http.delete<HttpHeaderResponse>(
       API_URLS.LOGOUT,
       {

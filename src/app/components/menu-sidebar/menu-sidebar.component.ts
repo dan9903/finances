@@ -6,8 +6,7 @@ import { ThemeService } from 'src/app/services/misc/theme.service';
 
 @Component({
   selector: 'app-menu-sidebar',
-  templateUrl: './menu-sidebar.component.html',
-  styleUrl: './menu-sidebar.component.scss'
+  templateUrl: './menu-sidebar.component.html'
 })
 export class MenuSidebarComponent implements OnChanges {
   @Input({ required: true })
@@ -23,6 +22,7 @@ export class MenuSidebarComponent implements OnChanges {
   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
 
   closeCallback(e: MouseEvent): void {
+    this.sidebarChangeValue(false);
     this.sidebarRef.close(e);
   }
 

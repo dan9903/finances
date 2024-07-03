@@ -36,7 +36,7 @@ export class ForgotPasswordComponent {
   onSubmit() {
     if (this.recoverForm?.valid) {
       const email = this.recoverForm.get('email')?.value;
-      this.authService.fogotPassword(email)
+      this.authService.fogotPassword$(email)
         .subscribe({
           next: (res: HttpHeaderResponse) => {
             if (res.status === HTTP_CODES.SUCCESS) {

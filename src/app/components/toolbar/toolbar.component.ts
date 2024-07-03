@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class ToolbarComponent implements OnInit {
   rangeDates: Date[] = [];
-  sidebarMenuVisible = true;
+  sidebarMenuVisible = false;
 
   constructor(private router: Router) { }
 

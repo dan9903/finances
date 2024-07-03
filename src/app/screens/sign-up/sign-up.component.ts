@@ -76,7 +76,7 @@ export class SignUpComponent implements OnInit {
         email: this.signUpForm.get('email')?.value,
         password: this.signUpForm.get('password')?.value
       }
-      this.authService.signup(req)
+      this.authService.signup$(req)
         .subscribe({
           next: (res: IRegistrationResponse) => {
             this.storageService.saveUser(res as IUser);
