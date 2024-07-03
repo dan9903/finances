@@ -2,6 +2,7 @@ import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpErrorResponseInterceptor } from "./http-error.interceptor";
+// import { TokenInterceptor } from "./token-interceptor";
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -18,4 +19,5 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorResponseInterceptor, multi: true }
+  // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
 ];

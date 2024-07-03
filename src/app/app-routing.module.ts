@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from './screens/page-not-found/page-not-found.c
 import { SignInComponent } from './screens/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './screens/forgot-password/forgot-password.component';
+import { AccountsComponent } from './screens/accounts/accounts.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent
+  },
+  {
+    path: 'accounts',
+    component: AccountsComponent,
   },
   {
     path: '',

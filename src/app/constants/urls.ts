@@ -5,5 +5,6 @@ export const API_URLS = {
   REGISTER: BASE_URL + 'auth/sign-up',
   LOGOUT: BASE_URL + 'auth/logout',
   FORGOT_PASSWORD: BASE_URL + 'auth/forgot-password',
-  RENEW_TOKEN: BASE_URL + 'auth/renew-token'
+  RENEW_TOKEN: BASE_URL + 'auth/renew-token',
+  ACCOUNTS: BASE_URL + 'accounts'
 }
