@@ -4,7 +4,7 @@ const authRouter = Router();
 
 authRouter.post('/sign-in', (req, res) => {
   console.log(req.body);
-  const { username } = req.body;
+  const [username] = req.body;
   if (username === 'error') {
     res.status(401)
       .send({
