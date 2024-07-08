@@ -2,10 +2,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TYPES_ACCOUNT } from 'src/app/constants/type-account';
 import { IAccount } from '../../interfaces/IAccount';
-import { AccountService } from 'src/app/services/user/account.service';
+import { AccountService } from 'src/app/services/accounts/account.service';
 import { MessageService } from 'primeng/api';
-import { HttpErrorResponse, HttpHeaderResponse } from '@angular/common/http';
-import { HTTP_CODES } from 'src/app/constants/http-codes';
+import { HttpErrorResponse } from '@angular/common/http';
 import { SharedService } from 'src/app/services/shared/shared.service';
 import { CONFIRMATION_ACTIONS } from 'src/app/constants/confirmation-actions';
 

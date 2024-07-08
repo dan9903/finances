@@ -1,12 +1,10 @@
-import { HttpErrorResponse, HttpHeaderResponse } from '@angular/common/http';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { CONFIRMATION_ACTIONS } from 'src/app/constants/confirmation-actions';
-import { HTTP_CODES } from 'src/app/constants/http-codes';
 import { IAccount } from 'src/app/interfaces/IAccount';
-import { IColumn } from 'src/app/interfaces/IColumn';
 import { SharedService } from 'src/app/services/shared/shared.service';
-import { AccountService } from 'src/app/services/user/account.service';
+import { AccountService } from 'src/app/services/accounts/account.service';
 
 @Component({
   selector: 'app-accounts',
@@ -15,7 +13,6 @@ import { AccountService } from 'src/app/services/user/account.service';
 export class AccountsComponent implements OnInit {
   reject = CONFIRMATION_ACTIONS.REJECT;
   accountVisible!: boolean;
-  cols!: IColumn[];
   accounts!: IAccount[];
   showConfirmationDialog = false;
   selectedAccount!: IAccount;
@@ -29,19 +26,11 @@ export class AccountsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAccounts();
-    this.buildTable();
   }
 
   addAccount(): void {
     this.accountVisible = true;
     this.sharedService.setAccount(undefined);
-  }
-
-  buildTable(): void {
-    this.cols = [
-      { field: 'name', header: 'Name' } as IColumn,
-      { field: 'typeAccount', header: 'Type of Account' }
-    ]
   }
 
   loadAccounts(): void {

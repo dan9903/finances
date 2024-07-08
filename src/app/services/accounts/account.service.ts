@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URLS } from 'src/app/constants/urls';
@@ -15,6 +15,12 @@ export class AccountService {
     return this.http.get<IAccount[]>(
       API_URLS.ACCOUNTS
     )
+  }
+
+  findById$(id: string): Observable<IAccount> {
+    return this.http.get<IAccount>(
+      `${API_URLS.ACCOUNTS}/${id}`
+    );
   }
 
   create$(name: string, typeAccount: string): Observable<void> {
