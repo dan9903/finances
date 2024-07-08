@@ -6,6 +6,7 @@ import { SignInComponent } from './screens/sign-in/sign-in.component';
 import { SignUpComponent } from './screens/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './screens/forgot-password/forgot-password.component';
 import { AccountsComponent } from './screens/accounts/accounts.component';
+import { TransactionsComponent } from './screens/transactions/transactions.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: 'accounts',
     component: AccountsComponent,
   },
+  {
+    path: 'transactions',
+    component: TransactionsComponent,
+  },
+
   {
     path: '',
     redirectTo: 'sign-in',

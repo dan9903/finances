@@ -1,0 +1,67 @@
+<p-toast position="top-right" />
+
+<app-toolbar></app-toolbar>
+
+<div class="p-8">
+    <div class="flex justify-content-end mb-4 mt-4">
+        <p-button
+          label="Add Transactions"
+          icon="pi pi-plus"
+          (onClick)="addTransaction()"
+        />
+    </div>
+      <p-table [columns]="cols" [value]="transactions" [(selection)]="selectedTransactions" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Payee</th>
+                <th>Amount</th>
+                <th>Account</th>
+                <th>Nature</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-transaction>
+            <tr>
+              <td>
+                <p-tableCheckbox [value]="transaction" />
+              </td>
+              <td>{{ transaction.date | date: 'medium' }}</td>
+              <td>{{ transaction.categoryName }}</td>
+              <td>{{ transaction.payee }}</td>
+              <td>{{ transaction.amount | currency : 'BRL': 'symbol' }}</td>
+              <td>{{ transaction.accountName }}</td>
+              <td>{{ transaction.nature | typeAccounts }}</td>
+              <td>
+                <div class="flex flex-wrap justify-content-center">
+                  <p-button icon="pi pi-pencil" (onClick)="openEdit(transaction.id)" class="mr-2"/>
+                  <p-button icon="pi pi-trash" (onClick)="openDelete(transaction.id)"/>
+                </div>
+            </td>
+            </tr>
+        </ng-template>
+      </p-table>
+</div>
+
+
+<p-dialog
+  [header]="editMode ? 'Edit Account': 'Add Account'"
+  [(visible)]="transactionVisible"
+  [style]="{ width: '25rem' }"
+  [draggable]="true"
+  [focusTrap]="true"
+  (onHide)="handleReturn(reject)"
+>
+  <app-account (onClose)="handleReturn($event)"></app-account>
+</p-dialog>
+
+<div *ngIf="showConfirmationDialog">
+  <app-confirmation-dialog
+    [itemName]="transactionToString()"
+    (confirmationAction)="handleDeleteReturn($event)"
+  ></app-confirmation-dialog>
+</div>
+
+

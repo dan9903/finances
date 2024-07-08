@@ -6,5 +6,6 @@ export const API_URLS = {
   LOGOUT: BASE_URL + 'auth/logout',
   FORGOT_PASSWORD: BASE_URL + 'auth/forgot-password',
   RENEW_TOKEN: BASE_URL + 'auth/renew-token',
-  ACCOUNTS: BASE_URL + 'accounts'
+  ACCOUNTS: BASE_URL + 'accounts',
+  TRANSACTIONS: BASE_URL + 'transactions'
 }

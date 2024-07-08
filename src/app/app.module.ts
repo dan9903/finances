@@ -43,6 +43,7 @@ import { TypeAccountsPipe } from './pipes/type-accounts.pipe';
 import { genericErrorHandlingProviders } from './global-error-handler';
 import { httpInterceptorProviders } from './helpers/http.interceptor';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { TransactionsComponent } from './screens/transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     AccountComponent,
     AccountsComponent,
     TypeAccountsPipe,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    TransactionsComponent
   ],
   imports: [
     AppRoutingModule,
