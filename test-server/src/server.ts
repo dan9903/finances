@@ -2,6 +2,7 @@ import express from "express";
 import authRouter from "./routes/auth.routes";
 import accountsRouter from "./routes/accounts.routes";
 import cors from "cors";
+import transactionsRouter from "./routes/transactions.routes";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors(options));
 app.use(express.json());
 app.use('/api/auth', authRouter);
 app.use('/api/accounts', accountsRouter);
+app.use('/api/transactions', transactionsRouter);
 
 const PORT = process.env.PORT || 8081;
 
