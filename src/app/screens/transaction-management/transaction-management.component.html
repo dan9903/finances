@@ -1,0 +1,132 @@
+<p-toast position="top-right" />
+
+<app-toolbar></app-toolbar>
+
+<div class="p-4">
+  <div class="flex justify-content-center flex-wrap">
+    <p-card [header]="editMode? 'Edit Account': 'Add Account'">
+      <form (ngSubmit)="onSubmit()" [formGroup]="transactionForm" >
+        <div class="flex flex-column gap-2 mb-3 mt-4">
+          <div class="block">
+          <p-floatLabel>
+            <p-calendar
+              formControlName="trDate"
+              [showTime]="true"
+              hourFormat="12"
+              [showIcon]="true"
+              [showOnFocus]="false"
+            />
+            <label for="date">Date</label>
+          </p-floatLabel>
+            <div *ngIf="transactionForm?.get('date')?.invalid && transactionForm?.get('date')?.touched" class="ml-2 text-color-secondary" >
+                Inform a valid date.
+            </div>
+          </div>
+          <div class="flex justify-content-between mt-3">
+            <div class="block">
+              <p-floatLabel>
+                <p-dropdown
+                  formControlName="category"
+                  [options]="categories"
+                  optionLabel="value"
+
+                  optionValue="key"
+                  [editable]="true"
+                  placeholder="Select a Category"
+                />
+                <label for="category">Category</label>
+              </p-floatLabel>
+              <div *ngIf="transactionForm?.get('category')?.invalid && transactionForm?.get('category')?.touched" class="mb-1 ml-2 text-color-secondary" >
+                Inform a valid category.
+              </div>
+            </div>
+             <div class="block">
+              <p-floatLabel>
+                <p-dropdown
+                  formControlName="account"
+                  [options]="accounts"
+                  optionLabel="value"
+                  optionValue="key"
+                  [editable]="true"
+                  name="categoty"
+                  placeholder="Select a Account"
+                />
+                <label for="account">Account</label>
+              </p-floatLabel>
+              <div *ngIf="transactionForm?.get('account')?.invalid && transactionForm?.get('account')?.touched" class="mb-1 ml-2 text-color-secondary" >
+                Inform a valid account.
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-auto mt-3">
+            <p-floatLabel>
+              <input formControlName="payee" name="payee" pInputText maxlength="50" class="w-full" />
+              <label for="payee">Payee</label>
+            </p-floatLabel>
+          </div>
+          <div class="flex justify-content-between mt-3">
+            <div class="block">
+              <p-floatLabel>
+                <p-inputNumber
+                  formControlName="amount"
+                  name="amount"
+                  mode="currency"
+                  currency="BRL"
+                  locale="pt-BR"
+                />
+                <label for="amount">Amount</label>
+              </p-floatLabel>
+              <div *ngIf="transactionForm?.get('amount')?.invalid && transactionForm?.get('amount')?.touched" class="mb-1 ml-2 text-color-secondary" >
+                  Inform a valid amount.
+              </div>
+            </div>
+            <div class="flex mt-1">
+              <div *ngFor="let nat of natures" class="field-checkbox">
+                <p-radioButton
+                  [inputId]="nat.key.toString()"
+                  [value]="nat.key"
+                  name="nature"
+                  formControlName="nature"
+                />
+                <label [for]="nat.key.toString()" class="mr-3">
+                  {{ nat.value }}
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <p-floatLabel class="mt-3">
+            <textarea
+              formControlName="notes"
+              rows="4"
+              cols="55"
+              name="notes"
+              class="w-full"
+              pInputTextarea>
+            </textarea>
+            <label for="notes">Notes</label>
+          </p-floatLabel>
+        </div>
+        <div class="flex justify-content-center mt-3">
+          <button
+            pRipple
+            pButton
+            icon="pi pi-save"
+            class="mr-2"
+          >
+          {{ editMode ? 'Edit': 'Save' }}
+          </button>
+          <div *ngIf="editMode">
+            <p-button
+              pRipple
+              icon="pi pi-times"
+              label="Cancel"
+              (onClick)="close(reject)"
+            />
+          </div>
+        </div>
+      </form>
+    </p-card>
+  </div>
+</div>

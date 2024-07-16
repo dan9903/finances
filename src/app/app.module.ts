@@ -5,15 +5,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
+import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
-import { ConfirmationService, MessageService } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { PanelModule } from 'primeng/panel';
@@ -39,11 +42,12 @@ import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.com
 import { AccountComponent } from './components/account/account.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
-import { TypeAccountsPipe } from './pipes/type-accounts.pipe';
+import { NaturesPipe } from './pipes/natures.pipe';
 import { genericErrorHandlingProviders } from './global-error-handler';
 import { httpInterceptorProviders } from './helpers/http.interceptor';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { TransactionsComponent } from './screens/transactions/transactions.component';
+import { TransactionManagementComponent } from './screens/transaction-management/transaction-management.component';
 
 @NgModule({
   declarations: [
@@ -57,9 +61,10 @@ import { TransactionsComponent } from './screens/transactions/transactions.compo
     MenuSidebarComponent,
     AccountComponent,
     AccountsComponent,
-    TypeAccountsPipe,
+    NaturesPipe,
     ConfirmationDialogComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    TransactionManagementComponent
   ],
   imports: [
     AppRoutingModule,
@@ -68,6 +73,7 @@ import { TransactionsComponent } from './screens/transactions/transactions.compo
     BrowserAnimationsModule,
     BrowserModule,
     ButtonModule,
+    CardModule,
     CalendarModule,
     CheckboxModule,
     ConfirmDialogModule,
@@ -76,6 +82,8 @@ import { TransactionsComponent } from './screens/transactions/transactions.compo
     FloatLabelModule,
     FormsModule,
     HttpClientModule,
+    InputNumberModule,
+    InputTextareaModule,
     InputTextModule,
     MessageModule,
     MessagesModule,

@@ -9,11 +9,11 @@ accountsRouter.get('', (req, res) => {
 });
 
 accountsRouter.post('', (req, res) => {
-  const { name, typeAccount } = req.body;
+  const { name, nature } = req.body;
   const id = 'husdhauh-w3ueiw-idush' + Math.random();
 
   accountsDb.push({
-    id, name, typeAccount
+    id, name, nature
   });
   res.status(201).send();
 });
@@ -27,12 +27,12 @@ accountsRouter.delete('/:id', (req, res) => {
 });
 
 accountsRouter.put('', (req, res) => {
-  const { id, name, typeAccount } = req.body;
+  const { id, name, nature } = req.body;
 
   accountsDb.map((account) => {
     if (account.id === id) {
       account.name = name;
-      account.typeAccount = typeAccount;
+      account.nature = nature;
     }
     return account;
   });

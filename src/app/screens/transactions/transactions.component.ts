@@ -1,20 +1,23 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { exhaustMap, forkJoin } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { CONFIRMATION_ACTIONS } from 'src/app/constants/confirmation-actions';
 import { IAccount } from 'src/app/interfaces/IAccount';
 import { IColumn } from 'src/app/interfaces/IColumn';
+import { Router } from '@angular/router';
 import { ITransaction, ITransactionTable } from 'src/app/interfaces/ITransaction';
 import { AccountService } from 'src/app/services/accounts/account.service';
 import { SharedService } from 'src/app/services/shared/shared.service';
 import { TransactionsService } from 'src/app/services/transactions/transactions.service';
+import { CategoriesService } from 'src/app/services/categories/categories.service';
+import { ICategory } from 'src/app/interfaces/ICategory';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html'
 })
-export class TransactionsComponent {
+export class TransactionsComponent implements OnInit {
   reject = CONFIRMATION_ACTIONS.REJECT;
   selectedTransaction!: ITransaction;
   selectedTransactions: ITransactionTable[] = [];
@@ -28,7 +31,9 @@ export class TransactionsComponent {
     private messageService: MessageService,
     private sharedService: SharedService,
     private accountService: AccountService,
+    private categoriesService: CategoriesService,
     private transactionsService: TransactionsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,42 +42,33 @@ export class TransactionsComponent {
 
   addTransaction(): void {
     this.transactionVisible = true;
-    this.sharedService.setAccount(undefined);
+    this.sharedService.setTransaction(undefined);
+    this.router.navigate(['transaction-management']);
   }
 
   loadTransactions(): void {
     forkJoin({
       transactionsList: this.transactionsService.list$(),
-      accountsList: this.accountService.list$()
+      accountsList: this.accountService.list$(),
+      categoriesList: this.categoriesService.list$(),
     })
-      .subscribe(({ transactionsList, accountsList }) => {
+      .subscribe(({ transactionsList, accountsList, categoriesList }) => {
         var account!: IAccount | undefined;
+        var category!: ICategory | undefined;
         this.transactions = transactionsList.map((item: ITransaction) => {
-          if (!account || account.id !== item.id) {
-            account = accountsList.find((acc) => acc.id === item.id);
+          if (!account || account.id !== item.account) {
+            account = accountsList.find((acc) => acc.id === item.account);
+          }
+          if (!category || category.id !== item.category) {
+            category = categoriesList.find((cat) => cat.id === item.category);
           }
           return {
             ...item,
             accountName: account ? account.name : "",
-            categoryName: 'default'
+            categoryName: category ? category.name : "",
           } as ITransactionTable;
         })
       });
-  }
-
-  convertIntoTable(list: ITransaction[]): ITransactionTable[] {
-    return list.map((item: ITransaction) => {
-      var accountName = '';
-      var categoryName = 'default';
-      this.accountService.findById$(item.id).subscribe((account) => {
-        accountName = account.name;
-      });
-      return {
-        ...item,
-        accountName: accountName,
-        categoryName: categoryName,
-      } as ITransactionTable;
-    });
   }
 
   openDelete(id: string): void {
@@ -115,11 +111,11 @@ export class TransactionsComponent {
       this.transactionVisible = true;
       this.editMode = true;
       this.showConfirmationDialog = false;
+      this.router.navigate(['transaction-management']);
     }
   }
 
   handleReturn(action: number): void {
-    console.log(action === CONFIRMATION_ACTIONS.CONFIRM ? 'confirm' : 'rejected');
     if (action === CONFIRMATION_ACTIONS.CONFIRM) {
       this.loadTransactions();
     }

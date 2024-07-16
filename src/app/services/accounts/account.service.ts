@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { API_URLS } from 'src/app/constants/urls';
 import { IAccount, IAccountRequest } from 'src/app/interfaces/IAccount';
+import { IKeyValue } from 'src/app/interfaces/IKeyValue';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,19 @@ export class AccountService {
     return this.http.get<IAccount[]>(
       API_URLS.ACCOUNTS
     )
+  }
+
+  listToDropDown$(): Observable<IKeyValue[]> {
+    return this.list$().pipe(
+      map((accounts: IAccount[]) => {
+        return accounts.map(item => {
+          return {
+            key: item.id,
+            value: item.name
+          } as IKeyValue;
+        });
+      })
+    );
   }
 
   findById$(id: string): Observable<IAccount> {
