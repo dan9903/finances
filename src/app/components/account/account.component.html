@@ -1,46 +1,47 @@
-    <div class="p-2">
-      <form (ngSubmit)="onSubmit()" [formGroup]="accountForm" >
-        <div class="flex flex-column gap-2 mb-3">
-          <label for="accountName">Name</label>
-          <input
-              pInputText
-              id="accountName"
-              aria-describedby="name-help"
-              formControlName="name"
-          />
-          <small id="name-help">
-              Enter your account name Cash, Bank, CreditCard etc.
-          </small>
-        </div>
-        <div class="flex justify-content-center">
-          <div *ngFor="let ta of typesAccount" class="field-checkbox">
-            <p-radioButton
-              [inputId]="ta.key.toString()"
-              [value]="ta.key"
-              formControlName="typeAccount"
-            />
-            <label [for]="ta.key.toString()" class="ml-2">
-              {{ ta.value }}
-            </label>
-          </div>
-        </div>
-        <div class="flex justify-content-center">
-          <button
-            pRipple
-            pButton
-            icon="pi pi-save"
-            class="mr-2"
-          >
-          {{ editMode ? 'Edit': 'Save' }}
-          </button>
-          <div *ngIf="editMode">
-            <p-button
-              pRipple
-              icon="pi pi-times"
-              label="Cancel"
-              (onClick)="close(reject)"
-            />
-          </div>
-        </div>
-      </form>
+<div class="p-2">
+  <form (ngSubmit)="onSubmit()" [formGroup]="accountForm" >
+    <div class="flex flex-column gap-2 mb-3">
+      <label for="accountName">Name</label>
+      <input
+          pInputText
+          id="accountName"
+          aria-describedby="name-help"
+          formControlName="name"
+      />
+      <small id="name-help">
+          Enter your account name Cash, Bank, CreditCard etc.
+      </small>
     </div>
+    <div class="flex justify-content-center">
+      <div *ngFor="let nat of natures" class="field-checkbox">
+        <p-radioButton
+          [inputId]="nat.key.toString()"
+          [value]="nat.key"
+          formControlName="natures"
+
+        />
+        <label [for]="nat.key.toString()" class="ml-2">
+          {{ nat.value }}
+        </label>
+      </div>
+    </div>
+    <div class="flex justify-content-center">
+      <button
+        pRipple
+        pButton
+        icon="pi pi-save"
+        class="mr-2"
+      >
+      {{ editMode ? 'Edit': 'Save' }}
+      </button>
+      <div *ngIf="editMode">
+        <p-button
+          pRipple
+          icon="pi pi-times"
+          label="Cancel"
+          (onClick)="close(reject)"
+        />
+      </div>
+    </div>
+  </form>
+</div>

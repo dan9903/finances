@@ -1,12 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { TYPES_ACCOUNT } from 'src/app/constants/type-account';
 import { IAccount } from '../../interfaces/IAccount';
 import { AccountService } from 'src/app/services/accounts/account.service';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SharedService } from 'src/app/services/shared/shared.service';
 import { CONFIRMATION_ACTIONS } from 'src/app/constants/confirmation-actions';
+import { NATURES } from 'src/app/constants/natures';
 
 @Component({
   selector: 'app-account',
@@ -17,7 +17,7 @@ export class AccountComponent implements OnInit {
   account!: IAccount;
   editMode = false;
   accountForm!: FormGroup;
-  typesAccount = TYPES_ACCOUNT;
+  natures = NATURES;
 
   @Output()
   onClose = new EventEmitter<number>();
@@ -32,10 +32,10 @@ export class AccountComponent implements OnInit {
   onSubmit() {
     if (this.accountForm?.valid) {
       const name = this.accountForm.get('name')?.value;
-      const typeAccount = this.accountForm.get('typeAccount')?.value;
+      const nature = this.accountForm.get('nature')?.value;
 
       if (this.editMode) {
-        this.accountService.update$(this.account.id, name, typeAccount)
+        this.accountService.update$(this.account.id, name, nature)
           .subscribe({
             next: () => {
               this.messageService.add({
@@ -56,7 +56,7 @@ export class AccountComponent implements OnInit {
         return;
       }
 
-      this.accountService.create$(name, typeAccount)
+      this.accountService.create$(name, nature)
         .subscribe({
           next: () => {
             this.messageService.add({
@@ -83,7 +83,7 @@ export class AccountComponent implements OnInit {
       if (account) {
         this.editMode = true;
         this.accountForm.get('name')?.setValue(account.name);
-        this.accountForm.get('typeAccount')?.setValue(account.typeAccount);
+        this.accountForm.get('nature')?.setValue(account.nature);
         this.account = account;
       }
     });
@@ -97,7 +97,7 @@ export class AccountComponent implements OnInit {
   }
 
   buildForm(): void {
-    const pattern = `[${this.typesAccount.map((i) => i.key.toString())}]`
+    const pattern = `[${this.natures.map((i) => i.key.toString())}]`
     this.accountForm = this.formBuilder.group({
       name: new FormControl('', [
         Validators.required,

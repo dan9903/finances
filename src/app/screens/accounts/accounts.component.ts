@@ -83,7 +83,6 @@ export class AccountsComponent implements OnInit {
   }
 
   handleReturn(action: number): void {
-    console.log(action === CONFIRMATION_ACTIONS.CONFIRM ? 'confirm' : 'rejected');
     if (action === CONFIRMATION_ACTIONS.CONFIRM) {
       this.loadAccounts();
     }

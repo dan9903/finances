@@ -21,7 +21,7 @@
         <ng-template pTemplate="body" let-account>
             <tr>
               <td>{{ account.name }}</td>
-              <td>{{ account.typeAccount | typeAccounts }}</td>
+              <td>{{ account.nature | natures }}</td>
               <td>
                 <div class="flex flex-wrap justify-content-center">
                   <p-button icon="pi pi-pencil" (onClick)="openEdit(account.id)" class="mr-2"/>
