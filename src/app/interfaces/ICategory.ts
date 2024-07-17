@@ -1,6 +1,10 @@
+import { MODES } from "../constants/modes";
+
 export interface ICategory {
-  id: string;
+  id?: string;
   name: string;
+  description: string;
+  mode?: MODES;
 }
 
 

@@ -21,7 +21,7 @@ accountsRouter.post('', (req, res) => {
 accountsRouter.delete('/:id', (req, res) => {
   const id = req.params.id;
 
-  accountsDb = accounts.filter((account) => account.id !== id)
+  accountsDb = accountsDb.filter((account) => account.id !== id)
 
   res.status(204).send();
 });

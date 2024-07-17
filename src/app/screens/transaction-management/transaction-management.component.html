@@ -4,7 +4,7 @@
 
 <div class="p-4">
   <div class="flex justify-content-center flex-wrap">
-    <p-card [header]="editMode? 'Edit Account': 'Add Account'">
+    <p-card [header]="editMode? 'Edit Transaction': 'Add Transaction'">
       <form (ngSubmit)="onSubmit()" [formGroup]="transactionForm" >
         <div class="flex flex-column gap-2 mb-3 mt-4">
           <div class="block">
@@ -109,22 +109,21 @@
           </p-floatLabel>
         </div>
         <div class="flex justify-content-center mt-3">
+          <p-button
+            pRipple
+            severity="secondary"
+            icon="pi pi-times"
+            [label] ="editMode ? 'Cancel' : 'Back'"
+            (onClick)="close(reject)"
+            class="mr-3"
+          />
           <button
             pRipple
             pButton
             icon="pi pi-save"
-            class="mr-2"
           >
-          {{ editMode ? 'Edit': 'Save' }}
+            Save
           </button>
-          <div *ngIf="editMode">
-            <p-button
-              pRipple
-              icon="pi pi-times"
-              label="Cancel"
-              (onClick)="close(reject)"
-            />
-          </div>
         </div>
       </form>
     </p-card>

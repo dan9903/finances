@@ -28,4 +28,22 @@ export class CategoriesService {
       })
     );
   }
+
+  create$(category: ICategory): Observable<void> {
+    return this.http.post<void>(
+      API_URLS.CATEGORIES,
+      category
+    );
+  }
+
+  update$(category: ICategory): Observable<void> {
+    return this.http.put<void>(
+      API_URLS.CATEGORIES,
+      category
+    );
+  }
+
+  delete$(id: string): Observable<void> {
+    return this.http.delete<void>(`${API_URLS.CATEGORIES}/${id}`)
+  }
 }

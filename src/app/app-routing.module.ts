@@ -8,6 +8,7 @@ import { ForgotPasswordComponent } from './screens/forgot-password/forgot-passwo
 import { AccountsComponent } from './screens/accounts/accounts.component';
 import { TransactionsComponent } from './screens/transactions/transactions.component';
 import { TransactionManagementComponent } from './screens/transaction-management/transaction-management.component';
+import { CategoriesComponent } from './screens/categories/categories.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'accounts',
     component: AccountsComponent,
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
   },
   {
     path: 'transactions',

@@ -21,7 +21,7 @@ transactionsRouter.post('', (req, res) => {
 transactionsRouter.delete('/:id', (req, res) => {
   const id = req.params.id;
 
-  transactionsDb = transactions.filter((transaction) => transaction.id !== id)
+  transactionsDb = transactionsDb.filter((transaction) => transaction.id !== id)
 
   res.status(204).send();
 });

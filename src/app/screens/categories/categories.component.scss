@@ -1,0 +1,17 @@
+.equal-height-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+::ng-deep .p-card-body {
+  padding: 0rem 1rem 2rem 1rem;
+}
+
+::ng-deep .p-card-content {
+  padding: 0rem 1rem 2rem 1rem;
+}

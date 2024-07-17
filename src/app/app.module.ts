@@ -48,6 +48,7 @@ import { httpInterceptorProviders } from './helpers/http.interceptor';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { TransactionsComponent } from './screens/transactions/transactions.component';
 import { TransactionManagementComponent } from './screens/transaction-management/transaction-management.component';
+import { CategoriesComponent } from './screens/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { TransactionManagementComponent } from './screens/transaction-management
     NaturesPipe,
     ConfirmationDialogComponent,
     TransactionsComponent,
-    TransactionManagementComponent
+    TransactionManagementComponent,
+    CategoriesComponent
   ],
   imports: [
     AppRoutingModule,

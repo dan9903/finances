@@ -103,7 +103,7 @@ export class AccountComponent implements OnInit {
         Validators.required,
         Validators.minLength(3)
       ]),
-      typeAccount: new FormControl('', [
+      nature: new FormControl('', [
         Validators.required,
         Validators.pattern(pattern)
       ])
