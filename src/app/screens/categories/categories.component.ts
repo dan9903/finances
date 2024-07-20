@@ -79,7 +79,6 @@ export class CategoriesComponent implements OnInit {
   loadTransactions(): void {
     this.categoriesService.list$().subscribe((categoriesList: ICategory[]) => {
       this.categories = categoriesList;
-      this.categories = [...categoriesList, ...categoriesList, ...categoriesList]
     });
   }
 
