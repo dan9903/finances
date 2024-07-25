@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Deployment
+
+This application is capable of running in a docker container when in production mode.
+Run `docker build -t finances-frontend-nodejs .` to build a docker image then you can run `docker run -d -p 8080:80 finances-frontend-nodejs`.

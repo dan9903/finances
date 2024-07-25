@@ -9,9 +9,9 @@ SUMMARY:
 [x] 1 - Project setup;
 [x] 2 - Authentication;
 [x] 3 - Header component;
-[] 4 - User Information page;
-[] 5 - Categories page;
-[] 6 - Transactions page;
-[] 7 - Dashboards page;
-[] 8 - Overview page;
-[] 9 - Deployment;
+[x] 4 - User Information page;
+[x] 5 - Categories page;
+[x] 6 - Transactions page;
+[x] 7 - Dashboards page;
+[x] 8 - Overview page;
+[x] 9 - Deployment;
