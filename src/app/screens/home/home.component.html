@@ -1,13 +1,37 @@
 <p-toast position="top-right" key="home" />
 
 <div class="mb-3">
-  <app-toolbar>
-  </app-toolbar>
+  <app-toolbar></app-toolbar>
 </div>
 
-<p-panel header="Scoped Panel">
-  <p class="m-0">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
-</p-panel>
+<div class="container">
+  <div class="grid">
+    <div class="col-12">
+      <span class="text-3xl font-bold">Welcome Back, {{ username }}</span>
+    </div>
+    <div class="col-12">
+      <span class="text-base font-light">This is your Financial Overview  Report</span>
+    </div>
+  </div>
+  <div class="flex flex-wrap mt-3">
+    <p-dropdown
+      [options]="accounts"
+      [(ngModel)]="selectedAccount"
+      [checkmark]="true"
+      optionLabel="value"
+      [editable]="true"
+      [showClear]="true"
+      placeholder="Select a Account" />
+
+    <p-calendar
+      [(ngModel)]="rangeDates"
+      class="ml-3"
+      selectionMode="range"
+      [readonlyInput]="true"
+      dateFormat="M dd, yy"
+    />
+  </div>
+
+  <app-dashboard [selectedDates]="rangeDates" [selectedAccount]="selectedAccount"></app-dashboard>
+
+</div>

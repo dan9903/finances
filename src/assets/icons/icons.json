@@ -1,0 +1,19 @@
+{
+  "iconImageFiles": [
+    {
+      "iconName": "chart-down",
+      "iconPath": "./assets/icons/chart-down.svg"
+    },
+    {
+      "iconName": "chart-up",
+      "iconPath": "./assets/icons/chart-up.svg"
+    },
+    {
+      "iconName": "pig-savings",
+      "iconPath": "./assets/icons/pig-savings.svg"
+    }
+  ],
+  "customIcons": [
+  ]
+}
+

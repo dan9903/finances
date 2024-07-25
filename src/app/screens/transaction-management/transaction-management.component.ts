@@ -43,7 +43,6 @@ export class TransactionManagementComponent implements OnInit {
   onSubmit() {
     if (this.transactionForm?.valid) {
       const transaction = {
-        id: this.transaction.id,
         date: this.transactionForm.get('trDate')?.value,
         category: this.transactionForm.get('category')?.value,
         payee: this.transactionForm.get('payee')?.value,
@@ -54,26 +53,26 @@ export class TransactionManagementComponent implements OnInit {
       } as ITransaction;
 
       if (this.editMode) {
-        console.log(transaction);
-        this.transactionsService.update$(transaction)
-          .subscribe({
-            next: () => {
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Account Updated!'
-              })
-              this.close(CONFIRMATION_ACTIONS.CONFIRM);
-              this.router.navigate(['transactions'])
-            },
-            error: (err: HttpErrorResponse) => {
-              this.messageService.add({
-                severity: 'error',
-                summary: 'Something went wrong',
-                detail: err.message
-              })
-              this.close(CONFIRMATION_ACTIONS.REJECT);
-            }
-          });
+        transaction.id = this.transaction.id,
+          this.transactionsService.update$(transaction)
+            .subscribe({
+              next: () => {
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Transaction Updated!'
+                })
+                this.close(CONFIRMATION_ACTIONS.CONFIRM);
+                this.router.navigate(['transactions'])
+              },
+              error: (err: HttpErrorResponse) => {
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Something went wrong',
+                  detail: err.message
+                })
+                this.close(CONFIRMATION_ACTIONS.REJECT);
+              }
+            });
         return;
       }
 
@@ -82,7 +81,7 @@ export class TransactionManagementComponent implements OnInit {
           next: () => {
             this.messageService.add({
               severity: 'success',
-              summary: 'Account Created!'
+              summary: 'Transaction Created!'
             });
             this.close(CONFIRMATION_ACTIONS.CONFIRM);
             this.router.navigate(['transactions'])

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { HTTP_CODES } from 'src/app/constants/http-codes';
 import { ILoginRequest, ILoginResponse } from 'src/app/interfaces/ILogin';
-import { IUser } from 'src/app/interfaces/IUser';
+import { IUserDetail } from 'src/app/interfaces/IUser';
 import { StorageService } from 'src/app/services/shared/storage.service';
 import { AuthService } from 'src/app/services/user/auth.service';
 
@@ -51,7 +51,7 @@ export class SignInComponent implements OnInit {
       }
       this.authService.login$(req).subscribe({
         next: (resp: ILoginResponse) => {
-          this.storageService.saveUser(resp as IUser);
+          this.storageService.saveUser(resp as IUserDetail);
 
           this.messageService.add({
             severity: 'success',

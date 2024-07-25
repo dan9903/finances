@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { HTTP_CODES } from 'src/app/constants/http-codes';
 import { IRegistrationRequest, IRegistrationResponse } from 'src/app/interfaces/IRegistration';
-import { IUser } from 'src/app/interfaces/IUser';
+import { IUserDetail } from 'src/app/interfaces/IUser';
 import { StorageService } from 'src/app/services/shared/storage.service';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { passwordMatchValidator } from 'src/app/validators/custom-validators';
@@ -79,7 +79,7 @@ export class SignUpComponent implements OnInit {
       this.authService.signup$(req)
         .subscribe({
           next: (res: IRegistrationResponse) => {
-            this.storageService.saveUser(res as IUser);
+            this.storageService.saveUser(res as IUserDetail);
             this.messageService.add({
               severity: 'success',
               summary: 'Account created!',

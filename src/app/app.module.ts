@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { ChartModule } from 'primeng/chart';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -49,6 +50,9 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { TransactionsComponent } from './screens/transactions/transactions.component';
 import { TransactionManagementComponent } from './screens/transaction-management/transaction-management.component';
 import { CategoriesComponent } from './screens/categories/categories.component';
+import { DashboardComponent } from './screens/dashboard/dashboard.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { AngularSvgIconPreloaderModule } from 'angular-svg-icon-preloader';
 
 @NgModule({
   declarations: [
@@ -66,9 +70,14 @@ import { CategoriesComponent } from './screens/categories/categories.component';
     ConfirmationDialogComponent,
     TransactionsComponent,
     TransactionManagementComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    DashboardComponent
   ],
   imports: [
+    AngularSvgIconModule.forRoot(),
+    AngularSvgIconPreloaderModule.forRoot({
+      configUrl: './assets/icons/icons.json',
+    }),
     AppRoutingModule,
     AvatarGroupModule,
     AvatarModule,
@@ -77,6 +86,7 @@ import { CategoriesComponent } from './screens/categories/categories.component';
     ButtonModule,
     CardModule,
     CalendarModule,
+    ChartModule,
     CheckboxModule,
     ConfirmDialogModule,
     DropdownModule,

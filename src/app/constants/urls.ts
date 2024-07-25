@@ -8,5 +8,6 @@ export const API_URLS = {
   RENEW_TOKEN: BASE_URL + 'auth/renew-token',
   ACCOUNTS: BASE_URL + 'accounts',
   TRANSACTIONS: BASE_URL + 'transactions',
+  DASHBOARD: BASE_URL + 'transactions/dashboard',
   CATEGORIES: BASE_URL + 'categories'
 }

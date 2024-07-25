@@ -1,0 +1,144 @@
+<div class="grid flex mt-4 flex-wrap justify-content-around">
+  <div class="col-3 ml-7">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="grid px-4 pt-4">
+          <div class="col-10">
+            <div class="block">
+              <span class="text-2xl font-bold w-full">Remaining</span>
+            </div>
+            <div class="block mt-2">
+              <span class="text-base font-light">{{ datesSubHeader }}</span>
+            </div>
+          </div>
+          <div class="col-2">
+            <svg-icon name="pig-savings" svgClass="bg-cyan-400 border-round "></svg-icon>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="body" class="pt-0">
+        <div class="block">
+          <span class="font-bold text-2xl">{{ dashboardsData.totalIncome - dashboardsData.totalOutcome | currency : 'USD': 'symbol': '1.2-2' }}</span>
+        </div>
+        <div class="block pt-2">
+          <div *ngIf="(dashboardsData.diffIncome - dashboardsData.diffOutcome) > 0; else negativeRem">
+            <span class="font-light text-base text-primary">{{ dashboardsData.diffIncome - dashboardsData.diffOutcome }}% from last period</span>
+          </div>
+          <ng-template #negativeRem>
+            <span class="font-light text-base text-red-600">{{ dashboardsData.diffIncome - dashboardsData.diffOutcome }}% from last period</span>
+          </ng-template>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="col-3">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="grid px-4 pt-4">
+          <div class="col-10">
+            <div class="block">
+              <span class="text-2xl font-bold w-full">Incomes</span>
+            </div>
+            <div class="block mt-2">
+              <span class="text-base font-light">{{ datesSubHeader }}</span>
+            </div>
+          </div>
+          <div class="col-2">
+            <svg-icon name="chart-up" svgClass="bg-green-200 border-round" ></svg-icon>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="body" class="pt-0">
+        <div class="block">
+          <span class="font-bold text-2xl">{{ dashboardsData.totalIncome | currency : 'USD': 'symbol': '1.2-2' }} </span>
+        </div>
+        <div class="block pt-2">
+          <div *ngIf="dashboardsData.diffIncome > 0; else negativeInc">
+            <span class="font-light text-base text-primary">{{ dashboardsData.diffIncome }}% from last period</span>
+          </div>
+          <ng-template #negativeInc>
+            <span class="font-light text-base text-red-600">{{ dashboardsData.diffIncome }}% from last period</span>
+          </ng-template>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="col-3 mr-7">
+     <p-card>
+      <ng-template pTemplate="header">
+        <div class="grid px-4 pt-4">
+          <div class="col-10">
+            <div class="block">
+              <span class="text-2xl font-bold w-full">Outcome</span>
+            </div>
+            <div class="block mt-2">
+              <span class="text-base font-light">{{ datesSubHeader }}</span>
+            </div>
+          </div>
+          <div class="col-2">
+            <svg-icon name="chart-down" svgClass="bg-red-200 border-round" ></svg-icon>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="body" class="pt-0">
+        <div class="block">
+          <span class="font-bold text-2xl">{{ dashboardsData.totalOutcome | currency : 'USD': 'symbol': '1.2-2' }}</span>
+        </div>
+        <div class="block pt-2">
+          <div *ngIf="dashboardsData.diffOutcome > 0; else negativeOut">
+            <span class="font-light text-base text-primary" >{{ dashboardsData.diffOutcome }}% from last period</span>
+          </div>
+          <ng-template #negativeOut>
+            <span class="font-light text-base text-red-600">{{ dashboardsData.diffOutcome }}% from last period</span>
+          </ng-template>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
+
+<div class="grid mt-5">
+  <div class="col-8">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="flex flex-wrap justify-content-between px-4 pt-4">
+          <span class="font-bold text-2xl">Transactions</span>
+          <p-dropdown
+            [options]="chartsDrop"
+            [(ngModel)]="transactionsChart"
+            [checkmark]="true"
+            optionLabel="amount"
+            [editable]="true"
+            [showClear]="true"
+            placeholder="Select a Account" />
+        </div>
+      </ng-template>
+      <ng-template pTemplate="body">
+        <p-chart [type]="transactionsChart" [data]="dataTransactions" [options]="optionsTransactions" />
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="col-4">
+    <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex flex-wrap justify-content-between px-4 pt-4">
+        <span class="font-bold text-2xl">Category</span>
+        <p-dropdown
+          [options]="chartsDrop"
+          [(ngModel)]="transactionsChart"
+          [checkmark]="true"
+          optionLabel="value"
+          [editable]="true"
+          [showClear]="true"
+          placeholder="Select a Account" />
+      </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+      <div class="flex justify-content-center">
+        <p-chart type="doughnut" [data]="dataCategory" [options]="optionsCategory" />
+      </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
+

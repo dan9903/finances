@@ -24,3 +24,4 @@ export interface ITransactionTable extends ITransaction {
   accountName: string;
   categoryName: string;
 }
+
